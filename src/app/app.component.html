@@ -1,0 +1,91 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+
+<hr />
+
+<form class="form-group" [formGroup]="registerForm">
+  <input
+    type="email"
+    [ngClass]="
+      {
+        'is-invalid':
+          registerForm.get('email').errors && registerForm.get('email').touched
+      } ||
+      (registerForm.get('email').touched &&
+        registerForm.hasError('emailExists'))
+    "
+    class="form-control"
+    formControlName="email"
+    placeholder="Email"
+  />
+  <div
+    class="invalid-feedback"
+    *ngIf="
+      registerForm.get('email').touched &&
+      registerForm.get('email').hasError('required')
+    "
+  >
+    Email is required
+  </div>
+  <div
+    class="invalid-feedback"
+    *ngIf="
+      registerForm.get('email').touched &&
+      registerForm.get('email').hasError('email')
+    "
+  >
+    Invalid email address
+  </div>
+  <div
+    class="invalid-feedback"
+    *ngIf="
+      registerForm.get('email').touched &&
+      registerForm.get('email').hasError('emailExists')
+    "
+  >
+    Email address already in use
+  </div>
+
+  <input
+    type="username"
+    [ngClass]="
+      {
+        'is-invalid':
+          registerForm.get('username').errors &&
+          registerForm.get('username').touched
+      } ||
+      (registerForm.get('username').touched &&
+        registerForm.hasError('usernameExists'))
+    "
+    class="form-control"
+    formControlName="username"
+    placeholder="username"
+  />
+  <div
+    class="invalid-feedback"
+    *ngIf="
+      registerForm.get('username').touched &&
+      registerForm.get('username').hasError('required')
+    "
+  >
+    username is required
+  </div>
+  <div
+    class="invalid-feedback"
+    *ngIf="
+      registerForm.get('username').touched &&
+      registerForm.get('username').hasError('invalidName')
+    "
+  >
+    palabra reservada
+  </div>
+
+  <button type="submit" (click)="guardar()">Enviar</button>
+</form>
+
+<hr />
+<b>email value:</b> {{ registerForm.controls.email.value }} <br />
+<b>email status:</b> {{ registerForm.controls.email.status }} <br />
+
+<b>username value:</b> {{ registerForm.controls.username.value }} <br />
+<b>username status:</b> {{ registerForm.controls.username.status }} <br />
