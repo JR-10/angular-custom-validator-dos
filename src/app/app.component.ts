@@ -25,16 +25,20 @@ export class AppComponent {
 
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      // email: new FormControl('', [
-      //   Validators.required,
-      //   Validators.email,
-      //   this.emailMatchValidator,
-      // ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        // this.emailMatchValidator,
+      ]),
+      username: new FormControl('', [Validators.required, this.wordValidator]),
+
+      /*
       email: [
         '',
         [Validators.required, Validators.email, this.emailMatchValidator],
       ],
       username: ['', [Validators.required, this.wordValidator]],
+      */
     });
   }
 
